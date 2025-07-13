@@ -81,7 +81,7 @@ games:
   - link:
       icon: "fa-solid fa-globe"
       text: "Старый архив со старыми играми"
-      url: "https://wheatleyhdd.github.io/old-archive"
+      url: "https://thatmaidguy.github.io/old-archive"
       alt: "Старый архив"
       title: "Старый архив"
       target: "_blank"
@@ -111,24 +111,6 @@ socials:
       url: "https://www.twitch.tv/thatmaidguy"
       title: "Twitch"
       alt: "Twitch"
-      target: "_blank"
-  - social:
-      icon: "fa-brands fa-x-twitter"
-      url: "https://x.com/ThatMaidGuy"
-      title: "X.com"
-      alt: "X.com"
-      target: "_blank"
-  - social:
-      icon: "fa-brands fa-mastodon"
-      url: "https://mastodon.social/@ThatMaidGuy"
-      title: "Mastodon"
-      alt: "Mastodon"
-      target: "_blank"
-  - social:
-      icon: "fa-brands fa-bluesky"
-      url: "https://bsky.app/profile/thatmaidguy.ru"
-      title: "Bluesky"
-      alt: "Bluesky"
       target: "_blank"
   - social:
       icon: "fa-brands fa-tiktok"
