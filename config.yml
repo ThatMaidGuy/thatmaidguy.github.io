@@ -47,6 +47,15 @@ tagline: >-
 # url: The URL of the link
 # alt: Alternative text for accessibility
 # target: `_blank` opens in a new tab, `_self` opens in the same frame
+otherlinks:
+    - link:
+        icon: "fa-brands fa-internet-explorer"
+        text: "Мой полноценный сайт (из 2007😉)"
+        url: "https://thatmaidguy.su"
+        alt: "IE6"
+        title: "IE6"
+        target: "_blank"
+
 links:
   - link:
       icon: "icon-boosty"
