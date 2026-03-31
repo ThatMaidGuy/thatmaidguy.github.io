@@ -36,10 +36,10 @@ body::after {
     transform: scale(1);
 }
 body {
-    cursor: url('img/pointer.png'), auto;
+    cursor: url('./img/pointer.png'), auto;
 }
 a, button, .button {
-    cursor: url('img/link.png'), pointer;
+    cursor: url('./img/link.png'), pointer;
 }
 
 #avatar {
