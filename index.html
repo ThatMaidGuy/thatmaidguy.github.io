@@ -52,7 +52,7 @@
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta
             name="msapplication-config"
-            content="./images/favicons/browserconfig.xml"
+            content="./img/favicons/browserconfig.xml"
         />
         <meta name="fediverse:creator" content="@ThatMaidGuy@mastodon.social" />
 
@@ -113,8 +113,8 @@
                 
                 <br/>
 
-                <img id="avatar" src="img/thatmaidguy.png" />
-                <h1 id="username">Парень-горничная</h1>
+                <img id="avatar" src="img/thatmaidguy.png" /><br/>
+                <h1 id="username" data-text="Парень-горничная">Парень-горничная</h1>
                 <div>Создаю экспериментальные игры</div>
             </div>
 
@@ -311,17 +311,61 @@
 
                     const randomName = secretNames[Math.floor(Math.random() * secretNames.length)];
                     username.textContent = randomName;
+                    username.setAttribute('data-text', randomName);
                     username.style.textShadow = "0 0 10px rgba(255,255,255,0.8)";
 
                     // через время вернуть обратно
                     setTimeout(() => {
                         username.textContent = "Парень-горничная";
+                        username.setAttribute('data-text', "Парень-горничная");
                         username.style.textShadow = "none";
                         clickCount = 0;
                         activated = false;
                     }, 5000);
                 }
             });
+
+            const konamiCode = [
+                'ArrowUp', 'ArrowUp', 
+                'ArrowDown', 'ArrowDown', 
+                'ArrowLeft', 'ArrowRight', 
+                'ArrowLeft', 'ArrowRight', 
+                'KeyB', 'KeyA'
+            ];
+            let konamiIndex = 0;
+            const music = new Audio("original.mp3")
+            music.volume = 0.25
+            music.loop = true
+
+            document.addEventListener('keydown', (e) => {
+                if (e.code === konamiCode[konamiIndex]) {
+                    konamiIndex++;
+                    if (konamiIndex === konamiCode.length) {
+                        toggleChaosMode();
+                        konamiIndex = 0;
+                    }
+                } else {
+                    konamiIndex = 0;
+                }
+            });
+
+            function toggleChaosMode() {
+                const body = document.body;
+                const isRainbow = body.classList.toggle('rainbow-mode');
+                const footerLine = document.querySelector('.footer-line.tiny');
+
+                if (isRainbow) {
+                    console.log("🔥 PARTY TIME! 🔥");
+                    if (footerLine) footerLine.textContent = "ЧТО ТЫ НАТВОРИЛ?!";
+                    music.play();
+                    document.querySelector('.content').style.transform = "skewX(-1deg)";
+                    document.querySelector('.content').add
+                } else {
+                    if (footerLine) footerLine.textContent = "thatmaidguy.ru";
+                    music.pause();
+                    document.querySelector('.content').style.transform = "none";
+                }
+            }
 
             var age_element = document.getElementById("age")
             age_element.textContent = calculateAge("2003-09-02")
