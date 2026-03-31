@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2;
+    transform: translateX(-50%) translateY(-50%);
+    filter: brightness(30%) blur(8px);
+    object-fit: cover;
+}
+
 body {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
@@ -36,10 +50,10 @@ body::after {
     transform: scale(1);
 }
 body {
-    cursor: url('./img/pointer.png'), auto;
+    cursor: url('https://thatmaidguy.ru/img/pointer.png'), auto !important;
 }
 a, button, .button {
-    cursor: url('./img/link.png'), pointer;
+    cursor: url('https://thatmaidguy.ru/img/link.png'), pointer !important;
 }
 
 #avatar {
@@ -52,7 +66,7 @@ a, button, .button {
     max-width: 480px;
     margin: 24px auto;
 
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     border-radius: 16px;
     border-style: solid;
     border-color: white;
