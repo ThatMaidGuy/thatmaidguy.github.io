@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры видео | ThatMaidGuy</title>
+    <link rel="stylesheet" href="./css/styles.css"> <style>
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: #8F0177;
+            box-shadow: 0 10px 20px rgba(143, 1, 119, 0.3);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 12px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .video-preview {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-preview iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            border: none;
+        }
+
+        .video-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+
+        .video-card:hover .video-preview img {
+            transform: scale(1.05);
+            filter: brightness(0.7);
+        }
+
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(143, 1, 119, 0.9); /* Твой фиолетовый */
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            z-index: 2;
+            border: 2px solid white;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+            background: #8F0177;
+            box-shadow: 0 0 25px #8F0177;
+        }
+
+        .video-preview iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            margin-bottom: 30px;
+            
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .back-link:hover {
+            background: rgba(143, 1, 119, 0.2); /* Твой фиолетовый */
+            border-color: rgba(143, 1, 119, 0.5);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(143, 1, 119, 0.4);
+            transform: translateX(-5px);
+        }
+        .back-link::before {
+            content: '←';
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+        .back-link:hover::before {
+            transform: translateX(-3px);
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="background.webm" type="video/mp4">
+    </video>
+
+    <div class="content" style="max-width: 900px;">
+        
+        <div class="block">
+            <h1>Видео-примеры</h1>
+            <p>Я занимаюсь видео-монтажом на заказ.</p>
+        </div>
+
+        <div class="block">
+            <span class="block-title">MixaP52</span>
+            <div class="video-grid">
+
+                <div class="video-card lazy-video" data-id="Ot0hyxRN_Mg">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/Ot0hyxRN_Mg/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">ЗАЧЕМ ВАМ ВИНДОУС ЕСЛИ ЕСТЬ ЭТО... ОБЗОР PROTON</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="KOm10W3LMcI">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/KOm10W3LMcI/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">В ЧЕМ ПРИЧИНА СТАБИЛЬНОСТИ ЛИНУКСА И НЕ СТАБИЛЬНОСТИ WINDOWS</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="block">
+            <span class="block-title">ThatMaidGuy</span>
+            <div class="video-grid">
+
+                <div class="video-card lazy-video" data-id="8lXkKdksb08">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/8lXkKdksb08/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">начинающий разработчик, сделай свою игру лучше добавив немного ИМПАКТА</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="-maN9f5mxGQ">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/-maN9f5mxGQ/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">ТОТ САМЫЙ ОТЕЧЕСТВЕННЫЙ ДВИЖОК ОТ ВК ЗА МИЛЛИАРД</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="y0wG0ZVF4Tg">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/y0wG0ZVF4Tg/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">СОЗДАЛ ЛУЧШУЮ ВИЗУАЛЬНУЮ НОВЕЛЛУ ЗА ДВОЕ СУТОК!</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="Q4109EasLcM">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/Q4109EasLcM/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">КАК Я СОЗДАВАЛ ИГРУ ЗА 72 ЧАСА | Ludum Dare 55</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="mJ1SpuvU2g4">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/mJ1SpuvU2g4/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">ЗАПРЕЩЕННЫЙ РАЗРАБОТЧИК НА ДВАЧЕ | Деревотян - кто это</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="iCZMxuqUclw">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/iCZMxuqUclw/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">Обзор на мой новый КРУТОЙ микрофон - Fifine Ampligame A8</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="MBKyFFuk4ss">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/MBKyFFuk4ss/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">Я добавил ГЕНШИН в мою игру про горничную</div>
+                </div>
+
+                <div class="video-card lazy-video" data-id="hSLRdA0rJZ4">
+                    <div class="video-preview">
+                        <img src="https://img.youtube.com/vi/hSLRdA0rJZ4/maxresdefault.jpg" alt="Превью видео">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-info">Cоздаю 3D Шутер про ГОРНИЧНУЮ и СхОжУ с УМА</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="block">
+            <a class="button" target="_blank" href="https://t.me/ThatMaidGuy">Заказать монтаж</a>
+        </div>
+        
+        <div class="block">
+            <a href="/" class="back-link">На главную</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.lazy-video');
+
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if (this.classList.contains('is-loaded')) {
+                        return;
+                    }
+
+                    const videoId = this.getAttribute('data-id');
+                    const container = this.querySelector('.video-preview');
+
+                    if (!videoId || !container) return;
+
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    iframe.style.border = "none";
+
+                    this.classList.add('is-loaded');
+
+                    container.replaceChildren(iframe);
+                    
+                    console.log("🎬 Видео запущено: " + videoId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
