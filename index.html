@@ -256,6 +256,7 @@
         </div>
 
         <script>
+            // Вычисление возраста
             function calculateAge(birthDateString) {
                 const today = new Date();
                 const birthDate = new Date(birthDateString);
@@ -270,7 +271,9 @@
 
                 return age;
             }
+            document.getElementById("age").textContent = calculateAge("2003-09-02")
 
+            // Приколы с аватаркой
             const avatar = document.getElementById("avatar");
             const username = document.getElementById("username");
 
@@ -306,6 +309,12 @@
             });
 
             avatar.addEventListener("click", () => {
+                const boing = new Audio("sounds/boing.wav");
+                boing.volume = 0.25;
+                boing.preservesPitch = false;
+                boing.playbackRate = Math.random() + 1.0;
+                boing.play();
+
                 if (activated) return;
 
                 clickCount++;
@@ -329,6 +338,7 @@
                 }
             });
 
+            // Конами код
             const konamiCode = [
                 'ArrowUp', 'ArrowUp', 
                 'ArrowDown', 'ArrowDown', 
@@ -371,8 +381,6 @@
                 }
             }
 
-            var age_element = document.getElementById("age")
-            age_element.textContent = calculateAge("2003-09-02")
             document.getElementById("year").textContent = new Date().getFullYear();
         </script>
     </body>
