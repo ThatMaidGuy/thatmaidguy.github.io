@@ -7,7 +7,7 @@
 
         <meta name="description" content="Создаю экспериментальные игры на Godot. Заходи в мой блог!" />
         <meta name="author" content="ThatMaidGuy" />
-        <meta name="viewport"content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
 
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#8F0177">
 
@@ -49,31 +49,38 @@
         <link rel="shortcut icon" href="./img/favicons/favicon.ico" />
         <meta name="apple-mobile-web-app-title" content="Уголок парня-горничной" />
         <meta name="application-name" content="Уголок парня-горничной" />
-        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="msapplication-TileColor" content="#8F0177" />
         <meta
             name="msapplication-config"
             content="./img/favicons/browserconfig.xml"
         />
         <meta name="fediverse:creator" content="@ThatMaidGuy@mastodon.social" />
 
+        <link
+            rel="preload"
+            href="./fonts/montserrat-cyrillic.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
         <link rel="stylesheet" href="./css/styles.css" />
 
         <script defer src="https://cloud.umami.is/script.js" data-website-id="5faa4b20-0cc6-45c4-ba1b-452d99aa76f9"></script>
     </head>
     <body>
         <video autoplay muted loop playsinline id="bg-video">
-            <source src="background.webm" type="video/mp4">
+            <source src="background.webm" type="video/webm">
         </video>
 
         <div class="content">
             <div class="block">
-                <img src="img/love.gif" />
-                <img src="img/love.gif" />
-                <img src="img/love.gif" />
-                
+                <img src="img/love.gif" alt="" width="32" height="32" />
+                <img src="img/love.gif" alt="" width="32" height="32" />
+                <img src="img/love.gif" alt="" width="32" height="32" />
+
                 <br/>
 
-                <img id="avatar" src="img/thatmaidguy.png" /><br/>
+                <img id="avatar" src="img/thatmaidguy.png" alt="Аватарка парня-горничной" width="256" height="256" /><br/>
                 <h1 id="username" data-text="Парень-горничная">Парень-горничная</h1>
                 <div>Создаю экспериментальные игры</div>
             </div>
@@ -82,7 +89,7 @@
                 <table class="small-info">
                     <tr>
                         <td class="q">Мой возраст:</td>
-                        <td class="a">Идет <span id="age">22</span> год</td>
+                        <td class="a">Идет <span id="age">24</span> год</td>
                     </tr>
                     <tr>
                         <td class="q">Часовой пояс:</td>
@@ -128,13 +135,13 @@
             </div>
 
             <div class="block">
-                <a class="social-icons" target="_blank" href="https://thatmaidguy.itch.io/"><img src="img/icons/itch.png" /></a>
-                <a class="social-icons" target="_blank" href="https://youtube.com/@thatmaidguy"><img src="img/icons/youtube.png" /></a>
-                <a class="social-icons" target="_blank" href="https://t.me/ThatMaidGuyChan"><img src="img/icons/telegram.png" /></a>
-                <a class="social-icons" target="_blank" href="https://www.twitch.tv/thatmaidguy"><img src="img/icons/twitch.png" /></a>
-                <a class="social-icons" target="_blank" href="https://discord.gg/gm8SXU8yMm"><img src="img/icons/discord.png" /></a>
-                <a class="social-icons" target="_blank" href="https://github.com/ThatMaidGuy"><img src="img/icons/github.png" /></a>
-                <a class="social-icons" target="_blank" href="mailto:me@thatmaidguy.ru"><img src="img/icons/email.png" /></a>
+                <a class="social-icons" target="_blank" href="https://thatmaidguy.itch.io/"><img src="img/icons/itch.png" alt="itch.io" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="https://youtube.com/@thatmaidguy"><img src="img/icons/youtube.png" alt="YouTube" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="https://t.me/ThatMaidGuyChan"><img src="img/icons/telegram.png" alt="Telegram" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="https://www.twitch.tv/thatmaidguy"><img src="img/icons/twitch.png" alt="Twitch" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="https://discord.gg/gm8SXU8yMm"><img src="img/icons/discord.png" alt="Discord" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="https://github.com/ThatMaidGuy"><img src="img/icons/github.png" alt="GitHub" width="48" height="48" /></a>
+                <a class="social-icons" target="_blank" href="mailto:me@thatmaidguy.ru"><img src="img/icons/email.png" alt="Почта" width="48" height="48" /></a>
             </div>
 
             <hr class="fading-hr">
@@ -218,11 +225,17 @@
 
                 return age;
             }
-            document.getElementById("age").textContent = calculateAge("2003-09-02")
+            // "Идет N год" - это текущий, еще не завершенный год жизни, поэтому +1
+            document.getElementById("age").textContent = calculateAge("2003-09-02") + 1
 
             // Приколы с аватаркой
             const avatar = document.getElementById("avatar");
             const username = document.getElementById("username");
+
+            // Грузим звук один раз, на клик только клонируем -
+            // так клики могут накладываться друг на друга без новых запросов
+            const boingTemplate = new Audio("sounds/boing.mp3");
+            boingTemplate.preload = "auto";
 
             let clickCount = 0;
             let activated = false;
@@ -256,7 +269,7 @@
             });
 
             avatar.addEventListener("click", () => {
-                const boing = new Audio("sounds/boing.wav");
+                const boing = boingTemplate.cloneNode();
                 boing.volume = 0.25;
                 boing.preservesPitch = false;
                 boing.playbackRate = Math.random() + 1.0;
@@ -294,9 +307,17 @@
                 'KeyB', 'KeyA'
             ];
             let konamiIndex = 0;
-            const music = new Audio("original.mp3")
-            music.volume = 0.25
-            music.loop = true
+
+            // 400+ КБ музыки незачем качать тем, кто не вводил конами-код
+            let music = null;
+            function getMusic() {
+                if (!music) {
+                    music = new Audio("original.mp3");
+                    music.volume = 0.25;
+                    music.loop = true;
+                }
+                return music;
+            }
 
             document.addEventListener('keydown', (e) => {
                 if (e.code === konamiCode[konamiIndex]) {
@@ -318,12 +339,11 @@
                 if (isRainbow) {
                     console.log("🔥 PARTY TIME! 🔥");
                     if (footerLine) footerLine.textContent = "ЧТО ТЫ НАТВОРИЛ?!";
-                    music.play();
+                    getMusic().play();
                     document.querySelector('.content').style.transform = "skewX(-1deg)";
-                    document.querySelector('.content').add
                 } else {
                     if (footerLine) footerLine.textContent = "thatmaidguy.ru";
-                    music.pause();
+                    if (music) music.pause();
                     document.querySelector('.content').style.transform = "none";
                 }
             }
