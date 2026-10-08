@@ -264,9 +264,25 @@ td.a {
 }
 
 
+/* Флекс, а не строка инлайновых ссылок: пробелы из разметки больше
+   не занимают место. Иконки сжимаются до доступной ширины, поэтому
+   остаются в одну строку на любом экране - брейкпоинты не нужны */
+.social-row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.social-icons {
+    flex: 0 1 48px;
+    min-width: 0;
+    line-height: 0;
+}
+
 .social-icons img {
-    margin-left: 4px;
-    margin-right: 4px;
+    width: 100%;
+    height: auto;
     transition: all 0.3s ease;
 }
 .social-icons img:hover {
@@ -349,6 +365,49 @@ td.a {
     font-size: 11px;
     opacity: 0.5;
     letter-spacing: 1px;
+}
+
+/* Фокус с клавиатуры: штатная обводка на тёмном фоне почти не видна */
+a:focus-visible,
+button:focus-visible,
+.button:focus-visible,
+.video-card:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+/* Узкие экраны: 48px отступов по бокам съедали почти половину ширины */
+@media (max-width: 560px) {
+    .content {
+        margin: 12px auto;
+        padding: 16px 18px 28px;
+        border-radius: 12px;
+    }
+
+    /* Вопрос над ответом: прижатые к разным краям колонки
+       на узком экране читаются рвано */
+    .small-info td {
+        display: block;
+        text-align: left;
+        padding-right: 0;
+    }
+    .small-info td.q {
+        padding-bottom: 2px;
+        font-size: 0.85rem;
+        opacity: 0.7;
+    }
+    .small-info td.a {
+        padding-bottom: 16px;
+    }
+    .small-info tr:last-child td.a {
+        padding-bottom: 0;
+    }
+
+    .button {
+        padding: 12px 10px;
+        letter-spacing: 0.5px;
+    }
+
 }
 
 /* Уважаем системную настройку "уменьшить движение":
